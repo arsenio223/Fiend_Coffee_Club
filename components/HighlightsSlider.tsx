@@ -117,7 +117,7 @@ export const HighlightsSlider: React.FC<HighlightsSliderProps> = ({
               src={image.src}
               alt={image.alt}
               fill
-              className="object-contain"
+              className="object-cover" // Changed back to object-cover for zoomed effect
               priority={index === 0}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
               onError={(e) => {
@@ -127,11 +127,11 @@ export const HighlightsSlider: React.FC<HighlightsSliderProps> = ({
               }}
             />
             {/* Dark overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
             
             {/* Title and Description Overlay */}
             {(image.title || image.description) && (
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white pointer-events-none">
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white">
                 {image.title && (
                   <h3 className="text-2xl md:text-4xl font-serif mb-2 drop-shadow-lg">{image.title}</h3>
                 )}
