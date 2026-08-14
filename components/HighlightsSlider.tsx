@@ -24,12 +24,12 @@ export const HighlightsSlider: React.FC<HighlightsSliderProps> = ({
   autoPlay = true,
   autoPlayInterval = 5000,
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const goToPrevious = () => {
+  const goToPrevious = (): void => {
     if (isTransitioning || images.length === 0) return;
     setIsTransitioning(true);
     setCurrentIndex((prevIndex) =>
@@ -38,7 +38,7 @@ export const HighlightsSlider: React.FC<HighlightsSliderProps> = ({
     setTimeout(() => setIsTransitioning(false), 700);
   };
 
-  const goToNext = () => {
+  const goToNext = (): void => {
     if (isTransitioning || images.length === 0) return;
     setIsTransitioning(true);
     setCurrentIndex((prevIndex) =>
@@ -47,7 +47,7 @@ export const HighlightsSlider: React.FC<HighlightsSliderProps> = ({
     setTimeout(() => setIsTransitioning(false), 700);
   };
 
-  const goToSlide = (index: number) => {
+  const goToSlide = (index: number): void => {
     if (isTransitioning || index === currentIndex || images.length === 0) return;
     setIsTransitioning(true);
     setCurrentIndex(index);
@@ -59,7 +59,6 @@ export const HighlightsSlider: React.FC<HighlightsSliderProps> = ({
     if (!autoPlay || images.length <= 1) return;
 
     if (isHovered) {
-      // Clear timer when hovered
       if (timerRef.current) {
         clearInterval(timerRef.current);
         timerRef.current = null;
@@ -81,7 +80,7 @@ export const HighlightsSlider: React.FC<HighlightsSliderProps> = ({
 
   // Keyboard navigation
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKeyDown = (e: KeyboardEvent): void => {
       if (e.key === 'ArrowLeft') goToPrevious();
       if (e.key === 'ArrowRight') goToNext();
     };
@@ -118,27 +117,26 @@ export const HighlightsSlider: React.FC<HighlightsSliderProps> = ({
               src={image.src}
               alt={image.alt}
               fill
-              className="object-cover"
+              className="object-contain"
               priority={index === 0}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
               onError={(e) => {
                 console.error(`Failed to load image: ${image.src}`);
-                // Fallback: hide broken image
                 const target = e.target as HTMLImageElement;
                 target.style.display = 'none';
               }}
             />
             {/* Dark overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
             
             {/* Title and Description Overlay */}
             {(image.title || image.description) && (
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white">
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white pointer-events-none">
                 {image.title && (
-                  <h3 className="text-2xl md:text-4xl font-serif mb-2">{image.title}</h3>
+                  <h3 className="text-2xl md:text-4xl font-serif mb-2 drop-shadow-lg">{image.title}</h3>
                 )}
                 {image.description && (
-                  <p className="text-sm md:text-base text-white/90 max-w-2xl">
+                  <p className="text-sm md:text-base text-white/90 max-w-2xl drop-shadow-lg">
                     {image.description}
                   </p>
                 )}
@@ -197,5 +195,4 @@ export const HighlightsSlider: React.FC<HighlightsSliderProps> = ({
   );
 };
 
-// Default export for easier importing
 export default HighlightsSlider;

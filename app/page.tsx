@@ -162,6 +162,16 @@ export default function HomePage() {
         <div className="max-w-2xl mx-auto text-center px-4">
           <h2 className="text-5xl font-serif">Love at first sip.</h2>
           <p className="text-white/80 text-lg mt-2">Every cup has a story. What's yours?</p>
+          <form className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-1 px-4 py-3 rounded-full text-maroon focus:outline-none focus:ring-2 focus:ring-gold-400"
+            />
+            <button className="bg-gold-400 text-maroon px-6 py-3 rounded-full font-semibold hover:bg-gold-300 transition-colors">
+              Subscribe
+            </button>
+          </form>
         </div>
       </section>
     </>
