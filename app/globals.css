@@ -1,0 +1,26 @@
+/* app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #fcf8f0;
+    color: #2e1e1a;
+  }
+}
+
+@layer components {
+  .shadow-soft {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+  }
+  
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 30px -12px rgba(107, 29, 43, 0.15);
+  }
+}
