@@ -89,27 +89,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Feature Bar */}
-      <section className="bg-white border-b border-maroon/10 py-6 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-          <div>
-            <span className="block font-semibold text-maroon">☕ QUALITY COFFEE</span>
-            <span className="text-sm text-gray-600">Finest coffee beans</span>
-          </div>
-          <div>
-            <span className="block font-semibold text-maroon">🌿 NATURAL INGREDIENTS</span>
-            <span className="text-sm text-gray-600">Carefully selected</span>
-          </div>
-          <div>
-            <span className="block font-semibold text-maroon">❤️ MADE WITH LOVE</span>
-            <span className="text-sm text-gray-600">Crafted with passion</span>
-          </div>
-          <div>
-            <span className="block font-semibold text-maroon">🤝 COMMUNITY FIRST</span>
-            <span className="text-sm text-gray-600">Good coffee brings people together</span>
-          </div>
-        </div>
-      </section>
+     
 
       {/* HIGHLIGHTS SLIDER */}
       <section className="py-16 bg-cream">
