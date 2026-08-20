@@ -117,7 +117,7 @@ export const HighlightsSlider: React.FC<HighlightsSliderProps> = ({
               src={image.src}
               alt={image.alt}
               fill
-              className="object-cover" // Changed back to object-cover for zoomed effect
+              className="object-cover"
               priority={index === 0}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
               onError={(e) => {
@@ -151,7 +151,7 @@ export const HighlightsSlider: React.FC<HighlightsSliderProps> = ({
         <>
           <button
             onClick={goToPrevious}
-            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-maroon rounded-full p-2 md:p-3 shadow-lg transition-all hover:scale-110 opacity-0 group-hover:opacity-100 md:opacity-100 z-20"
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-maroon hover:text-white text-maroon rounded-full p-2 md:p-3 shadow-lg transition-all hover:scale-110 opacity-0 group-hover:opacity-100 md:opacity-100 z-20"
             aria-label="Previous image"
           >
             <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
@@ -159,7 +159,7 @@ export const HighlightsSlider: React.FC<HighlightsSliderProps> = ({
 
           <button
             onClick={goToNext}
-            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-maroon rounded-full p-2 md:p-3 shadow-lg transition-all hover:scale-110 opacity-0 group-hover:opacity-100 md:opacity-100 z-20"
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-maroon hover:text-white text-maroon rounded-full p-2 md:p-3 shadow-lg transition-all hover:scale-110 opacity-0 group-hover:opacity-100 md:opacity-100 z-20"
             aria-label="Next image"
           >
             <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
@@ -167,7 +167,7 @@ export const HighlightsSlider: React.FC<HighlightsSliderProps> = ({
         </>
       )}
 
-      {/* Dots Indicator */}
+      {/* Dots Indicator - Changed to maroon/white */}
       {images.length > 1 && (
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
           {images.map((_, index) => (
@@ -176,7 +176,7 @@ export const HighlightsSlider: React.FC<HighlightsSliderProps> = ({
               onClick={() => goToSlide(index)}
               className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                 index === currentIndex
-                  ? 'bg-white w-6 md:w-8'
+                  ? 'bg-maroon w-6 md:w-8'
                   : 'bg-white/50 hover:bg-white/80'
               }`}
               aria-label={`Go to slide ${index + 1}`}

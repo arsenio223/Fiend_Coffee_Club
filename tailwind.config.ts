@@ -11,16 +11,12 @@ const config: Config = {
     extend: {
       colors: {
         maroon: {
-          DEFAULT: '#6b1d2b',
-          dark: '#4d1420',
-          light: '#8a2a3a',
+          DEFAULT: '#ff002f',
+          dark: '#af0606',
+          light: '#ed0101',
         },
         cream: '#fcf8f0',
-        gold: {
-          DEFAULT: '#d4af37',
-          300: '#e8c84a',
-          400: '#d4af37',
-        },
+      
       },
       fontFamily: {
         serif: ['var(--font-dm-serif)', 'serif'],

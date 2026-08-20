@@ -55,21 +55,29 @@ export default function AboutPage() {
 
   return (
     <div className="bg-cream">
-      {/* Hero Section */}
-      <section className="relative bg-maroon text-white overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-maroon/90 to-maroon/70">
-          <div className="absolute inset-0 bg-[url('/images/about-hero.jpg')] bg-cover bg-center opacity-20"></div>
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 py-20 md:py-28">
+      {/* Hero Section - WITHOUT OVERLAY */}
+      <section className="relative text-white overflow-hidden min-h-[500px] flex items-center">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/images/about-hero.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        
+        {/* Content */}
+        <div className="relative max-w-7xl mx-auto px-4 py-20 md:py-28 z-10">
           <div className="max-w-3xl">
-            <span className="text-sm tracking-[0.2em] uppercase bg-white/10 px-4 py-1 rounded-full inline-block mb-4">
+            <span className="text-sm tracking-[0.2em] uppercase bg-black/30 px-4 py-1 rounded-full inline-block mb-4 backdrop-blur-sm">
               Our Story
             </span>
-            <h1 className="text-4xl md:text-6xl font-serif leading-[1.1]">
+            <h1 className="text-4xl md:text-6xl font-serif leading-[1.1] drop-shadow-lg">
               Good Coffee.<br />
-              <span className="text-gold-400">Great Community.</span>
+              <span className="text-white">Great Community.</span>
             </h1>
-            <p className="text-lg md:text-xl text-white/80 mt-4 max-w-xl">
+            <p className="text-lg md:text-xl text-white/90 mt-4 max-w-xl drop-shadow-lg">
               From a simple dream to a place where friendships are brewed and stories are shared.
             </p>
           </div>
@@ -84,7 +92,7 @@ export default function AboutPage() {
               <h2 className="text-3xl md:text-4xl font-serif text-maroon mb-6">
                 Where It All Started
               </h2>
-              <div className="w-20 h-1 bg-gold-400 mb-6"></div>
+              <div className="w-20 h-1 bg-maroon mb-6"></div>
               <p className="text-gray-700 leading-relaxed mb-4">
                 FIEND Coffee Club was born from a simple idea in the heart of Davao City — 
                 <strong className="text-maroon"> good coffee brings people together</strong>. 
@@ -103,12 +111,12 @@ export default function AboutPage() {
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link href="/menu">
-                  <button className="bg-maroon text-white px-6 py-2.5 rounded-full font-semibold hover:bg-maroon-dark transition hover:scale-105">
+                  <button className="bg-maroon text-white px-6 py-2.5 rounded-full font-semibold hover:bg-white hover:text-maroon border-2 border-maroon transition-all duration-300 hover:scale-105">
                     Explore Our Menu
                   </button>
                 </Link>
                 <Link href="/shop">
-                  <button className="border-2 border-maroon text-maroon px-6 py-2.5 rounded-full font-semibold hover:bg-maroon hover:text-white transition">
+                  <button className="border-2 border-maroon text-maroon px-6 py-2.5 rounded-full font-semibold hover:bg-maroon hover:text-white transition-all duration-300">
                     Visit Our Shop
                   </button>
                 </Link>
@@ -123,7 +131,7 @@ export default function AboutPage() {
                   className="object-cover"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    target.src = ''; // Fallback if image missing
+                    target.src = '';
                   }}
                 />
               </div>
@@ -148,21 +156,19 @@ export default function AboutPage() {
         </div>
       </section>
 
-      
-
-      {/* Memories Gallery */}
+      {/* Our Memories Section */}
       <section className="py-16 bg-cream">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-serif text-maroon">Our Memories</h2>
-            <div className="w-20 h-1 bg-gold-400 mx-auto mt-4"></div>
+            <div className="w-20 h-1 bg-maroon mx-auto mt-4"></div>
             <p className="text-gray-600 max-w-2xl mx-auto mt-4">
               A glimpse into the moments that make FIEND Coffee Club special.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {memories.map((memory) => (
-              <div key={memory.id} className="group relative overflow-hidden rounded-xl shadow-soft">
+              <div key={memory.id} className="group relative overflow-hidden rounded-xl shadow-soft hover:shadow-lg hover:shadow-maroon/20 transition-all duration-300">
                 <div className="relative h-64 bg-gradient-to-br from-maroon/5 to-maroon/10">
                   <Image
                     src={memory.src}
@@ -170,7 +176,6 @@ export default function AboutPage() {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => {
-                      // Fallback: show emoji if image missing
                       const target = e.target as HTMLImageElement;
                       target.style.display = 'none';
                       const parent = target.parentElement;
@@ -198,7 +203,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-serif">Visit Us</h2>
-            <div className="w-20 h-1 bg-gold-400 mx-auto mt-4"></div>
+            <div className="w-20 h-1 bg-white mx-auto mt-4"></div>
             <p className="text-white/80 text-lg max-w-2xl mx-auto">
               Come experience the FIEND difference at either of our locations. 
               We're always brewing something special.
@@ -207,15 +212,15 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {branches.map((branch) => (
-              <div key={branch.id} className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                <h3 className="text-2xl font-serif text-gold-400 mb-4 flex items-center gap-2">
-                  <MapPin className="h-5 w-5 text-gold-400" />
+              <div key={branch.id} className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300">
+                <h3 className="text-2xl font-serif text-white mb-4 flex items-center gap-2">
+                  <MapPin className="h-5 w-5 text-white" />
                   {branch.name}
                 </h3>
                 
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 text-white/80">
-                    <MapPin className="h-4 w-4 text-gold-400 flex-shrink-0" />
+                    <MapPin className="h-4 w-4 text-white flex-shrink-0" />
                     <span>{branch.address}</span>
                   </div>
                   
@@ -241,7 +246,7 @@ export default function AboutPage() {
                     rel="noopener noreferrer"
                     className="block"
                   >
-                    <button className="w-full bg-gold-400 text-maroon px-6 py-2.5 rounded-full font-semibold hover:bg-gold-300 transition hover:scale-105">
+                    <button className="w-full bg-white text-maroon px-6 py-2.5 rounded-full font-semibold hover:bg-maroon hover:text-white border-2 border-white transition-all duration-300 hover:scale-105">
                       Open in Google Maps
                     </button>
                   </a>
@@ -254,20 +259,18 @@ export default function AboutPage() {
           <div className="mt-12 text-center border-t border-white/10 pt-8">
             <div className="flex flex-wrap justify-center gap-6 text-white/80">
               <div className="flex items-center gap-2">
-                <Clock className="h-5 w-5 text-gold-400" />
+                <Clock className="h-5 w-5 text-white" />
                 <span>Mon - Sun: 11:00 AM - 3:00 AM</span>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="h-5 w-5 text-gold-400" />
+                <Phone className="h-5 w-5 text-white" />
                 <span>+63 912 345 6789</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="h-5 w-5 text-gold-400" />
+                <Mail className="h-5 w-5 text-white" />
                 <span>hello@fiendcoffee.com</span>
               </div>
             </div>
-            
-           
           </div>
         </div>
       </section>

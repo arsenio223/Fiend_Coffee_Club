@@ -1,0 +1,4 @@
+;/*FB_PKG_DELIM*/
+
+__d("CometFeedMenuHideDescriptionsContext",["react"],(function(t,n,r,o,a,i,l){"use strict";var e,s=e||(e=o("react")),u=s.createContext(!1);l.default=u}),98);
+__d("CometFeedMenuItem.react",["CometFeedMenuHideDescriptionsContext","FDSMenuItem.react","react","react-compiler-runtime"],(function(t,n,r,o,a,i,l){"use strict";var e=["ref"],s,u=s||(s=o("react")),c=s.useContext;function d(t){var n=o("react-compiler-runtime").c(9),a,i;n[0]!==t?(i=t.ref,a=babelHelpers.objectWithoutPropertiesLoose(t,e),n[0]=t,n[1]=a,n[2]=i):(a=n[1],i=n[2]);var l=c(r("CometFeedMenuHideDescriptionsContext"));if(l){var s;return n[3]!==a||n[4]!==i?(s=u.jsx(r("FDSMenuItem.react"),babelHelpers.extends({},a,{bodyText:void 0,ref:i,secondaryText:void 0})),n[3]=a,n[4]=i,n[5]=s):s=n[5],s}var d;return n[6]!==a||n[7]!==i?(d=u.jsx(r("FDSMenuItem.react"),babelHelpers.extends({},a,{ref:i})),n[6]=a,n[7]=i,n[8]=d):d=n[8],d}l.default=d}),98);

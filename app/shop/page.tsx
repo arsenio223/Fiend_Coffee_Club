@@ -46,7 +46,7 @@ export default function ShopPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
-      <h1 className="text-4xl font-serif text-maroon mb-8">Our Shop</h1>
+      <h1 className="text-4xl font-serif text-maroon mb-8">Our Product</h1>
 
       {/* Filters */}
       <div className="bg-white p-6 rounded-xl shadow-soft mb-8">

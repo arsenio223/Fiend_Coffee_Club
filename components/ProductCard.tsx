@@ -58,17 +58,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <Link href={`/shop/${product.slug}`} className="block">
-      <div className="bg-white rounded-xl shadow-soft card-hover overflow-hidden transition-all duration-300 h-full flex flex-col">
-        {/* Image - Larger and showing full image */}
+      <div className="bg-white rounded-xl shadow-soft card-hover overflow-hidden transition-all duration-300 h-full flex flex-col hover:shadow-lg hover:shadow-maroon/20">
+        {/* Image */}
         <div className="relative w-full bg-gradient-to-br from-maroon/5 to-maroon/10 flex items-center justify-center overflow-hidden">
-          {/* 1:1 Square ratio - shows full image */}
           <div className="relative w-full pt-[100%]">
             {!imageError ? (
               <Image
                 src={product.image}
                 alt={product.name}
                 fill
-                className="object-contain p-4" // object-contain shows the whole image
+                className="object-contain p-4"
                 onError={() => {
                   console.error(`Failed to load image: ${product.image}`);
                   setImageError(true);
@@ -77,7 +76,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 priority={product.category === 'milk' || product.category === 'sweetener'}
               />
             ) : (
-              // Fallback emoji if image fails to load
               <div className="absolute inset-0 flex items-center justify-center text-8xl">
                 {getEmoji()}
               </div>
@@ -110,10 +108,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             <button
               onClick={handleAddToCart}
               disabled={product.stock === 0}
-              className={`w-full py-2.5 px-4 rounded-full font-semibold transition-all ${
+              className={`w-full py-2.5 px-4 rounded-full font-semibold transition-all duration-300 ${
                 product.stock === 0 
                   ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
-                  : 'bg-maroon text-white hover:bg-maroon-dark hover:scale-105'
+                  : 'bg-maroon text-white hover:bg-white hover:text-maroon border-2 border-maroon hover:scale-105'
               }`}
             >
               {product.stock === 0 ? 'Out of Stock' : 'ADD TO CART'}

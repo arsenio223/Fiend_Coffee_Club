@@ -15,13 +15,11 @@ interface CartContextType {
   total: number;
 }
 
-// Create and export the context
 export const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
 
-  // Load cart from localStorage on mount
   useEffect(() => {
     const savedCart = localStorage.getItem('fiend-cart');
     if (savedCart) {
@@ -33,7 +31,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
-  // Save cart to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('fiend-cart', JSON.stringify(items));
   }, [items]);
@@ -90,7 +87,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   );
 };
 
-// Custom hook for using cart
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {

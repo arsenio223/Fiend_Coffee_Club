@@ -13,6 +13,11 @@
 # testing
 /coverage
 
+# Large video files
+*.mp4
+*.mov
+*.avi
+
 # next.js
 /.next/
 /out/
@@ -32,6 +37,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+.env.local
+.env.production
+.env.development
 
 # vercel
 .vercel

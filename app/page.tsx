@@ -2,11 +2,11 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { products } from '@/data/products';
 import { ProductCard } from '@/components/ProductCard';
 import HighlightsSlider from '@/components/HighlightsSlider';
 
-// Define your highlight images using fiend1.jpg - fiend5.jpg
 const highlightImages = [
   {
     id: '1',
@@ -46,50 +46,44 @@ const highlightImages = [
 ];
 
 export default function HomePage() {
-  const matchaProducts = products.filter(p => p.category === 'matcha');
-  const otherProducts = products.filter(p => p.category !== 'matcha');
-
   return (
     <>
       {/* Hero Section with Background Image */}
-      <section className="relative bg-maroon text-white overflow-hidden min-h-[600px] flex items-center">
-        {/* Background Image */}
+      <section className="relative text-white overflow-hidden min-h-[700px] md:min-h-[800px] flex items-center">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('/hero-bg.jpg')",
+            backgroundImage: "url('/images/about-story-3.jpg')",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
-        >
-          {/* Dark overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-maroon/90 to-maroon/70"></div>
-        </div>
+        />
         
-        {/* Content */}
-        <div className="relative max-w-7xl mx-auto px-4 py-20 md:py-28 lg:py-36 z-10">
-          <span className="text-sm tracking-[0.2em] uppercase bg-white/10 px-4 py-1 rounded-full inline-block">
+        <div className="relative max-w-7xl mx-auto px-4 py-20 md:py-32 lg:py-40 z-10">
+          <span className="text-sm tracking-[0.2em] uppercase bg-black/30 px-4 py-1 rounded-full inline-block backdrop-blur-sm">
             Good Coffee. Great Vibes.
           </span>
-          <h1 className="text-5xl md:text-7xl font-serif leading-[1.1] max-w-2xl mt-4">
+          <h1 className="text-5xl md:text-7xl font-serif leading-[1.1] max-w-2xl mt-4 drop-shadow-lg">
             Coffee.<br />Community.<br />
-            <span className="text-gold-400">Comfort.</span>
+            <span className="text-white">Comfort.</span>
           </h1>
-          <p className="text-lg md:text-xl max-w-xl text-white/80 mt-4">
+          <p className="text-lg md:text-xl max-w-xl text-white/90 mt-4 drop-shadow-lg">
             A coffee shop built for good vibes, great conversations, and everyday moments that matter.
           </p>
           <div className="flex flex-wrap gap-4 mt-8">
-            <button className="bg-white text-maroon px-8 py-3 rounded-full font-semibold hover:bg-gold-400 transition-colors hover:scale-105">
-              EXPLORE MENU
-            </button>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-maroon transition-all">
-              ORDER NOW
-            </button>
+            <Link href="/menu">
+              <button className="bg-white text-maroon px-8 py-3 rounded-full font-semibold hover:bg-white/90 hover:text-maroon border-2 border-white transition-all duration-300 hover:scale-105">
+                EXPLORE MENU
+              </button>
+            </Link>
+            <Link href="/menu">
+              <button className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-maroon transition-all duration-300">
+                ORDER NOW
+              </button>
+            </Link>
           </div>
         </div>
       </section>
-
-     
 
       {/* HIGHLIGHTS SLIDER */}
       <section className="py-16 bg-cream">
@@ -108,50 +102,96 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Matcha Selection */}
+      {/* NEW: View Products Section - Same size as hero */}
+      <section className="relative text-white overflow-hidden min-h-[700px] md:min-h-[800px] flex items-center">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/images/fiend2.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        
+        <div className="relative max-w-7xl mx-auto px-4 py-20 md:py-32 lg:py-40 z-10 text-center w-full">
+          <span className="text-sm tracking-[0.3em] uppercase bg-black/30 px-5 py-1.5 rounded-full inline-block mb-4 backdrop-blur-sm">
+            Shop Our Collection
+          </span>
+          <h2 className="text-4xl md:text-6xl font-serif leading-[1.1] max-w-3xl mx-auto drop-shadow-lg">
+            Discover Our <br />
+            <span className="text-white">Premium Products</span>
+          </h2>
+          <p className="text-lg md:text-xl text-white/90 mt-4 max-w-2xl mx-auto drop-shadow-lg">
+            From premium matcha to artisanal coffee beans and quality ingredients.
+          </p>
+          
+          {/* View Products Button - SMALLER with BOX BORDER */}
+          <div className="mt-8">
+            <Link href="/shop">
+              <button className="group relative px-6 py-3 text-base md:text-lg font-semibold rounded-lg border-2 border-white text-white hover:bg-white hover:text-maroon transition-all duration-300 hover:scale-105 hover:shadow-xl inline-flex items-center gap-2">
+                View Products
+              </button>
+            </Link>
+          </div>
+          
+          <div className="w-24 h-1 bg-white/30 mx-auto mt-6"></div>
+        </div>
+      </section>
+
+      {/* MENU SECTION */}
+      <section className="relative text-white overflow-hidden min-h-[500px] md:min-h-[600px] flex items-center">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/images/fiend5.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        
+        <div className="relative max-w-7xl mx-auto px-4 py-20 md:py-28 z-10 text-center">
+          <span className="text-sm tracking-[0.3em] uppercase bg-black/30 px-5 py-1.5 rounded-full inline-block mb-4 backdrop-blur-sm">
+            Discover Our Menu
+          </span>
+          <h2 className="text-4xl md:text-6xl font-serif leading-[1.1] max-w-3xl mx-auto drop-shadow-lg">
+            Explore Our <br />
+            <span className="text-white">Delicious Selection</span>
+          </h2>
+          <p className="text-lg md:text-xl text-white/90 mt-4 max-w-2xl mx-auto drop-shadow-lg">
+            From premium matcha to artisan coffee and delightful pastries.
+          </p>
+          
+          <div className="mt-8">
+            <Link href="/menu">
+              <button className="group relative px-6 py-3 text-base md:text-lg font-semibold rounded-lg border-2 border-white text-white hover:bg-white hover:text-maroon transition-all duration-300 hover:scale-105 hover:shadow-xl inline-flex items-center gap-2">
+                View Menu
+              </button>
+            </Link>
+          </div>
+          
+          <div className="w-24 h-1 bg-white/30 mx-auto mt-6"></div>
+        </div>
+      </section>
+
+      {/* Call to Action - Visit Us */}
       <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-serif text-maroon">OUR MATCHA SELECTION</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto mt-2">
-              Carefully crafted from premium green tea leaves. Smooth, vibrant, and full of natural goodness.
-            </p>
+        <div className="max-w-4xl mx-auto text-center px-4">
+          <h2 className="text-3xl md:text-4xl font-serif text-maroon mb-4">Visit Us Today</h2>
+          <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
+            Experience the FIEND difference. Great coffee, amazing food, and a community that feels like home.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/about">
+              <button className="bg-maroon text-white px-8 py-3 rounded-full font-semibold hover:bg-maroon-dark transition hover:scale-105">
+                Find Our Locations
+              </button>
+            </Link>
+            <Link href="/contact">
+              <button className="border-2 border-maroon text-maroon px-8 py-3 rounded-full font-semibold hover:bg-maroon hover:text-white transition hover:scale-105">
+                Contact Us
+              </button>
+            </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {matchaProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* More Goodness */}
-      <section className="py-16 bg-cream">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-serif text-maroon text-center mb-12">MORE GOODNESS</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
-            {otherProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter */}
-      <section className="bg-maroon text-white py-16">
-        <div className="max-w-2xl mx-auto text-center px-4">
-          <h2 className="text-5xl font-serif">Love at first sip.</h2>
-          <p className="text-white/80 text-lg mt-2">Every cup has a story. What's yours?</p>
-          <form className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-full text-maroon focus:outline-none focus:ring-2 focus:ring-gold-400"
-            />
-            <button className="bg-gold-400 text-maroon px-6 py-3 rounded-full font-semibold hover:bg-gold-300 transition-colors">
-              Subscribe
-            </button>
-          </form>
         </div>
       </section>
     </>

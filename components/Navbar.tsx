@@ -11,20 +11,19 @@ export const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { totalItems } = useCart();
 
-  // Update nav items with proper paths
   const navItems = [
     { name: 'HOME', path: '/' },
-    { name: 'ABOUT US', path: '/about' },  // Changed from /about-us to /about
+    { name: 'ABOUT US', path: '/about' },
     { name: 'MENU', path: '/menu' },
     { name: 'SHOP', path: '/shop' },
-    { name: 'CONTACT', path: '/contact' }
+    { name: 'CONTACT', path: '/contact' },
   ];
 
   return (
     <nav className="sticky top-0 z-50 bg-maroon text-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo - LEFT SIDE */}
+          {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
             <Image
               src="/images/logo.png"
@@ -34,7 +33,6 @@ export const Navbar: React.FC = () => {
               className="object-contain"
               priority
               onError={(e) => {
-                // If logo doesn't load, hide it
                 const target = e.target as HTMLImageElement;
                 target.style.display = 'none';
               }}
@@ -49,37 +47,45 @@ export const Navbar: React.FC = () => {
             </div>
           </Link>
 
-          {/* Desktop Navigation - RIGHT SIDE */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.path}
-                className="text-sm lg:text-base font-medium hover:text-gold-300 transition-colors whitespace-nowrap"
+                className="text-sm lg:text-base font-medium text-white hover:bg-white hover:text-maroon px-3 py-2 rounded-full transition-all duration-300"
               >
                 {item.name}
               </Link>
             ))}
-            
+
             <div className="flex items-center gap-4 ml-4">
-              <Link href="/cart" className="relative hover:text-gold-300 transition-colors">
+              {/* Cart Icon with Badge */}
+              <Link
+                href="/checkout"
+                className="relative text-white hover:bg-white hover:text-maroon p-2 rounded-full transition-all duration-300"
+                aria-label="Shopping Cart"
+              >
                 <ShoppingCart className="h-5 w-5 lg:h-6 lg:w-6" />
                 {totalItems > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-gold-400 text-maroon text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 bg-white text-maroon text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
                     {totalItems}
                   </span>
                 )}
               </Link>
-              
-              <button className="bg-white text-maroon px-4 py-2 rounded-full text-sm font-semibold hover:bg-gold-300 transition whitespace-nowrap">
-                ORDER NOW
-              </button>
+
+              {/* Order Now Button */}
+              <Link href="/menu">
+                <button className="bg-white text-maroon px-5 py-2 rounded-full text-sm font-semibold hover:bg-maroon hover:text-white border-2 border-white transition-all duration-300 hover:scale-105">
+                  ORDER NOW
+                </button>
+              </Link>
             </div>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white focus:outline-none"
+            className="md:hidden text-white hover:bg-white hover:text-maroon p-2 rounded-full transition-all duration-300"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -93,20 +99,26 @@ export const Navbar: React.FC = () => {
               <Link
                 key={item.name}
                 href={item.path}
-                className="block py-2 text-sm font-medium hover:text-gold-300 transition-colors"
+                className="block py-2 text-sm font-medium text-white hover:bg-white hover:text-maroon px-3 py-2 rounded-full transition-all duration-300"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
             <div className="mt-4 flex items-center gap-4">
-              <Link href="/cart" className="flex items-center gap-2">
+              <Link
+                href="/checkout"
+                className="flex items-center gap-2 text-white hover:bg-white hover:text-maroon p-2 rounded-full transition-all duration-300"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
                 <ShoppingCart className="h-5 w-5" />
                 <span>Cart ({totalItems})</span>
               </Link>
-              <button className="bg-white text-maroon px-4 py-1.5 rounded-full text-sm font-semibold">
-                ORDER NOW
-              </button>
+              <Link href="/menu" onClick={() => setIsMobileMenuOpen(false)}>
+                <button className="bg-white text-maroon px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-maroon hover:text-white border-2 border-white transition-all duration-300">
+                  ORDER NOW
+                </button>
+              </Link>
             </div>
           </div>
         )}
