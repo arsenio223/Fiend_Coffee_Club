@@ -32,9 +32,8 @@ export interface OrderData {
 // Save a new order
 export const saveOrder = async (orderData: any) => {
   try {
-    console.log('saveOrder called with:', orderData);
+    console.log('📦 saveOrder called with:', orderData);
     
-    // Generate order number
     const timestamp = Date.now().toString().slice(-6);
     const orderNumber = `FD-${timestamp}`;
     
@@ -46,22 +45,20 @@ export const saveOrder = async (orderData: any) => {
       updatedAt: serverTimestamp()
     };
     
-    console.log('Saving to Firebase:', orderDataWithMeta);
+    console.log('💾 Saving to Firebase:', orderDataWithMeta);
     
     const orderRef = await addDoc(collection(db, 'orders'), orderDataWithMeta);
     
-    console.log('Order saved with ID:', orderRef.id);
+    console.log('✅ Order saved with ID:', orderRef.id);
     
     return { success: true, orderId: orderRef.id, orderNumber };
   } catch (error) {
-    console.error('Error saving order:', error);
-    console.error('Error details:', error instanceof Error ? error.message : 'Unknown error');
-    console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
+    console.error('❌ Error saving order:', error);
     return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
   }
 };
 
-// Get all orders (admin)
+// Get all orders (admin) - with error handling
 export const getOrders = async () => {
   try {
     const q = query(
@@ -85,7 +82,7 @@ export const getOrderById = async (orderId: string) => {
   try {
     const orderDoc = await getDoc(doc(db, 'orders', orderId));
     if (orderDoc.exists()) {
-      return { id: orderDoc.id, ...orderDoc.data() };
+      return { id: orderDoc.id, ...doc.data() };
     }
     return null;
   } catch (error) {
